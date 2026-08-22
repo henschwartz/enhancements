@@ -93,22 +93,35 @@ lifecycle; extensions own application semantics.
   modify messages or initiate independent upstream work.
 - Acting as a general-purpose forward proxy or TLS interception
   proxy.
+- Reviving generic per-frame WebSocket filter hooks on every
+  connection. That shape was closed as not planned in
+  praxis-proxy/praxis#44 and was an explicit non-goal in
+  praxis-proxy/ai#439. This capability is opt-in, message-level session
+  ownership for routes that terminate in Praxis, not a frame-level hook
+  applied to all upgraded traffic.
 
 ### Required Capabilities
 
 **Explicit session selection**
 
-Application management is selected by trusted configuration and
-request processing before the upgrade completes. An arbitrary
-client-supplied header cannot activate an application handler or
-choose its protected configuration.
+Application management is selected by operator-authored, server-side
+configuration, evaluated during request processing before the upgrade
+completes. Praxis has no notion of client-supplied trust, so an
+arbitrary client header can never activate an application handler or
+choose its protected configuration. Whether an application must
+additionally declare a capability to terminate a WebSocket, in the
+spirit of existing filter security classification, is an open question
+for the How? iteration.
 
 **Framework-owned WebSocket transport**
 
 Praxis performs the downstream handshake and owns protocol correctness
 for the resulting connection. Extensions interact with bounded
 message-level primitives rather than client masking, frame fragments,
-or raw upgraded-body chunks.
+or raw upgraded-body chunks. Negotiated extensions are declined by
+default; permessage-deflate and similar are enabled only where a route
+requires them, because decoding them adds an amplification surface that
+the transparent tunnel never exposed.
 
 **Asynchronous bidirectional execution**
 
@@ -185,11 +198,19 @@ Responses API provides a compatible native WebSocket upstream, so a
 Praxis AI application can mediate WebSocket messages while retaining
 the upstream protocol and streaming behavior. OpenAI documents this
 transport at `wss://api.openai.com/v1/responses`, with repeated
-`response.create` events on one connection.
+`response.create` events on one connection. That upstream serves one
+in-flight response at a time, bounds connection lifetime, and keeps
+incremental continuation bound to the connection, so the framework must
+own session lifecycle, resource limits, and upstream reconnection
+beneath a longer-lived downstream session rather than leaving them to
+each extension.
 
 vLLM provides the Responses API over HTTP, returning JSON or
-server-sent events for streaming responses. It does not need to expose
-the same WebSocket transport for Praxis to serve the Codex client. A
+server-sent events for streaming responses, and it does not thread
+prior turns server-side, so an application targeting vLLM must
+reconstruct the context that Codex would otherwise reference with
+`previous_response_id`. It does not need to expose the same WebSocket
+transport for Praxis to serve the Codex client. A
 Praxis AI application should be able to accept the downstream
 WebSocket, hydrate and validate each logical Responses request, invoke
 vLLM over HTTP/SSE, and emit the resulting Responses events as
