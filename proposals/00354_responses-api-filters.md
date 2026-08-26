@@ -2,7 +2,6 @@
 issue: https://github.com/praxis-proxy/praxis/issues/354
 discussion: https://github.com/praxis-proxy/praxis/pull/445
 status: proposed
-supersedes: 00432
 repos:
   - ai
 authors:
