@@ -181,7 +181,7 @@ values:
 | `operator` | Kubernetes Gateway API operator |
 | `extproc` | Envoy ExtProc gRPC server |
 | `conventions` | Shared lint/config template |
-| `experiments` | Experimental filters and features |
+| `experimental` | Experimental filters and features |
 | `grid` | AI Grid control plane |
 | `forge` | Declarative dev environments |
 | `policy` | OPA/Rego policy engine |

@@ -57,7 +57,7 @@ body:
         - operator
         - extproc
         - conventions
-        - experiments
+        - experimental
         - grid
         - forge
         - policy

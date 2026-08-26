@@ -85,7 +85,7 @@ See the [template] for the full frontmatter schema.
 Valid `repos` values:
 
 `praxis`, `ai`, `operator`, `extproc`,
-`conventions`, `experiments`, `grid`, `forge`,
+`conventions`, `experimental`, `grid`, `forge`,
 `policy`, `demos`, `pingora`
 
 [org-level discussions]: https://github.com/orgs/praxis-proxy/discussions
