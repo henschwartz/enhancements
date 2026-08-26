@@ -5,6 +5,10 @@ on:
     - cron: '0 9 * * 1'  # Weekly on Monday at 09:00 UTC
   workflow_dispatch:
 
+concurrency:
+  group: stale-proposals
+  cancel-in-progress: false
+
 permissions:
   contents: read
   pull-requests: write
@@ -12,6 +16,7 @@ permissions:
 jobs:
   stale-check:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - name: Generate token
         id: app-token
