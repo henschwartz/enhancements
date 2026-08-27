@@ -46,6 +46,7 @@ docs/
   process.md              # Full proposal lifecycle
   statuses.md             # Status definitions
   experimental-phase.md   # Experimental repo guide
+  pr-review.md            # PR review in target repos
 proposals/
   template.md             # Proposal template
   NNNNN_slug.md           # Individual proposals
@@ -56,6 +57,7 @@ proposals/
 - [Proposal Process](docs/process.md)
 - [Status Definitions](docs/statuses.md)
 - [Experimental Phase Guide](docs/experimental-phase.md)
+- [Pull Request Review](docs/pr-review.md)
 - [Proposal Template](proposals/template.md)
 - [Contributing](CONTRIBUTING.md)
 

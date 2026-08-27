@@ -157,6 +157,15 @@ experimental flag. Experimental features are
 functional but may change based on user feedback,
 and nothing about them is guaranteed.
 
+PRs against the target repo are reviewed as either
+standard or experimental. Experimental PRs carry
+the `experimental` label, get lighter scrutiny, and
+must keep all new code behind the `experimental`
+build tag. See [pr-review.md] for how PRs are
+reviewed in the implementation repos.
+
+[pr-review.md]: pr-review.md
+
 > **Note**: Updates to experimental features may
 > make breaking, backwards-incompatible changes. An
 > experimental feature may be removed at any time.
@@ -166,7 +175,10 @@ and nothing about them is guaranteed.
 After a soak period determined by maintainers, a
 maintainer may promote the feature from experimental
 to standard/released. The proposal status is updated
-to `released`.
+to `released`. At the code level, promotion means
+removing the `experimental` build tag so the feature
+builds by default, which requires a full review of
+the entire feature. See [pr-review.md].
 
 ## Affected Repositories
 

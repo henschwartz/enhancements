@@ -38,7 +38,13 @@ capabilities:
    implementation (PR or branch URL).
 4. Once the prototype exists and the proposal is
    accepted, code moves to the target repository
-   behind an experimental flag.
+   behind an experimental flag. In the target repo,
+   that work lands through `experimental`-labeled
+   PRs behind the `experimental` build tag. See
+   [pr-review.md] for how those PRs are reviewed and
+   how the build tag is later removed.
+
+[pr-review.md]: pr-review.md
 
 ### What Counts as a Sufficient Prototype?
 
