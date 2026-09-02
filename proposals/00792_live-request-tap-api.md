@@ -1,7 +1,7 @@
 ---
 issue: https://github.com/praxis-proxy/praxis/issues/792
 discussion: https://github.com/praxis-proxy/praxis/issues/792
-status: proposed
+status: hold
 repos:
   - praxis
 authors:
@@ -31,6 +31,9 @@ related:
   - 00799
 ---
 
+# On Hold
+
+On-hold for now for priority reasons and not ready to move forward yet, though we will likely revisit this one later.
 # Live Request Tap API (SSE Streaming)
 
 ## What?
