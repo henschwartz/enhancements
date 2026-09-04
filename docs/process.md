@@ -1,96 +1,96 @@
 # Proposal Process
 
-Enhancement proposals for new capabilities and
-refinements across [Praxis] repositories.
+Enhancements for new capabilities and refinements
+across [Praxis] repositories.
 
-Small changes (bug fixes, minor enhancements,
-documentation updates) do not require proposals.
-Proposals are for features that span multiple PRs,
-introduce new architectural patterns, affect a
-project's public interface, or are complex enough
-to warrant more process.
+The process is deliberately light: open an issue,
+let maintainers triage it, and work on it once it's
+accepted. Most changes need nothing more.
 
 ## How New Features Happen
 
 ```
-Discussion -> Proposal -> Experimental -> Standard
+Issue -> Triage -> Accepted -> Work it
 ```
 
-**Discussion first.** This is the only entry point.
-Open a [GitHub Discussion] (category: "Idea")
-describing what you want and why. Collect feedback,
-build consensus, get maintainer sign-off.
+**Open an issue.** This is the entry point.
+Describe what you want and why. Every new issue
+starts labeled `triage/needs-triage`.
 
-**Nothing moves forward without a Discussion.**
-PRs that add proposals without a valid discussion
-link are automatically closed.
+**Maintainers triage it.** They mark the issue
+either `triage/accepted` or `triage/declined`. If
+a change is large or risky enough to warrant a
+written proposal first, maintainers will say so
+clearly by adding `triage/needs-proposal`.
 
-> **Nothing before standard is guaranteed.** A
-> discussion does not guarantee a proposal will be
-> accepted. An accepted proposal does not guarantee
-> an experimental implementation. An experimental
-> feature does not guarantee promotion to standard.
-> Features can be changed, reworked, or removed at
-> any stage before reaching standard.
+**Build it.** Once an issue is `triage/accepted`,
+it's fair game to work on according to its project
+status and milestone.
+
+> **Nothing here is guaranteed.** Acceptance does
+> not guarantee a feature ships, and a feature can
+> be changed, reworked, or removed at any stage.
 
 ## Lifecycle
 
-### 1. Discussion
+### 1. Issue
 
-Open a [GitHub Discussion] (category: "Idea")
-describing the change at a high level. Focus on
-*what* and *why*, not implementation details.
-
-Build consensus with community members.
-
-> **Note**: Some implementation details at this
-> stage can be OK, depending on the situation. The
-> point of the discussion phase is to get consensus
-> that what you're bringing up is a real concern
-> that needs to be addressed, regardless of how it
-> is addressed.
-
-**This step is mandatory.** Proposals without a
-valid discussion link will have their PRs
-automatically closed.
-
-[GitHub Discussion]: https://github.com/orgs/praxis-proxy/discussions
-
-### 2. Sign-off
-
-A maintainer reviews the discussion and marks it
-as approved. This confirms the project is open to
-the proposed direction.
+Open an issue describing the change. Focus on
+*what* and *why*, not implementation details. The
+issue is labeled `triage/needs-triage`
+automatically.
 
 > **Note**: It's fair to directly ping maintainers
-> asking for review and approval consideration when
-> things get stuck.
+> asking for triage consideration when things get
+> stuck.
 
-### 3. Issue
+### 2. Triage
 
-Once the discussion is approved by a maintainer
-and resolved, create an `EPIC` issue in this repo.
-Include first a link to the originating discussion,
-followed by a high-level summary. This is where
-all implementation work will be organized (as
-sub-tasks).
+A maintainer reviews the issue and applies one of:
 
-> **Note**: Maintainers will assign epic and
-> sub-task owners.
+| Label | Meaning |
+|-------|---------|
+| `triage/accepted` | Approved. Fair game to work on. |
+| `triage/declined` | Not proceeding. A reason is given. |
+| `triage/needs-proposal` | Accepted in principle, but a written proposal is required first (see below). |
 
-### 4. Proposal PR
+Maintainers assign owners and set the project
+status and milestone that govern when the work
+happens.
 
-Create a proposal file in `proposals/` and submit
-it as a PR. File naming convention:
+### 3. Work it
 
-```console
-<5-digit-issue-number>_<kebab-case-slug>.md
-```
+Once accepted, implement the change in the target
+repository. Work proceeds according to the issue's
+project status and milestone. Small changes (bug
+fixes, minor enhancements, documentation) never
+needed process to begin with, they just get done.
 
-The first PR must contain only the **What?** and
-**Why?** sections. The **How?** section must be
-added after the goals and motivation are accepted.
-See the [template] for the full structure.
+## When a Proposal Is Required
+
+Most issues do not need a proposal. Maintainers
+will ask for one, by adding `triage/needs-proposal`,
+when a change spans multiple PRs, introduces a new
+architectural pattern, affects a project's public
+interface, or is otherwise complex enough to
+warrant a written design.
+
+When a proposal is requested:
+
+1. Create a proposal file in `proposals/` and
+   submit it as a PR. File naming convention:
+
+   ```console
+   <5-digit-issue-number>_<kebab-case-slug>.md
+   ```
+
+2. The first PR should contain the **What?** and
+   **Why?** sections. Add the **How?** section in a
+   follow-up once the direction is agreed. See the
+   [template] for the full structure.
+
+3. Iterate until a maintainer marks the proposal's
+   status as `accepted`.
 
 > **v0.x.x simplification**: During pre-1.0
 > development, the **How?** section does not
@@ -100,85 +100,35 @@ See the [template] for the full structure.
 > the solution. A full requirements and design
 > writeup is welcome but not required until 1.0.
 
-CI will auto-close PRs that:
-
-- Are missing a `discussion` link
-- Are missing an `issue` link
-- Have no `authors` listed
-- Have no `stakeholders` listed
-- Have no `repos` listed
-- Include the `How?` section in a new proposal
+A proposal PR should link the issue it came from
+and list its `authors`, `stakeholders`, and
+affected `repos` in frontmatter. See the [template].
 
 [template]: ../proposals/template.md
 
-### 5. Iteration
+## Experimental Phase (at maintainer discretion)
 
-Iterate on the proposal in subsequent PRs. Add
-the **How?** section: either a list of implementing
-PRs or a full requirements and design writeup.
-Refine until a maintainer marks the proposal as
-accepted.
+For some changes, maintainers may ask that the
+feature be prototyped in the [experimental repo]
+first, or shipped behind an experimental flag,
+before it lands as standard. This is decided
+case by case, not required by default.
 
-### 6. Prototype
+When it applies, code lands behind the
+`experimental` build tag and carries the
+`experimental` label on its PRs, getting lighter
+scrutiny while the design settles. After a soak
+period, a maintainer may promote it to standard by
+removing the build tag, which requires a full
+review of the whole feature.
 
-Before implementation begins in the target
-repository, most proposals must be prototyped in
-the [experimental repo].
-
-**Default path** (filters, features, new
-capabilities): implement a working prototype in the
-experimental repo. Update the proposal's
-`experimental_impl` frontmatter field with a link to
-the implementation. Proposals cannot advance to
-`experimental` status without a prototype or an
-exemption.
-
-**Exempt path** (core infrastructure, operator
-changes, cross-cutting concerns): set
-`experimental_exempt: true` and provide a reason in
-`experimental_exempt_reason`. Use a feature flag or
-experimental build flag in the target repo instead.
-
-See [experimental-phase.md] for full details,
-exemption categories, and what constitutes a
-sufficient prototype.
+See [experimental-phase.md] for how prototyping
+works and [pr-review.md] for how standard and
+experimental PRs are reviewed in the target repos.
 
 [experimental repo]: https://github.com/praxis-proxy/experimental
 [experimental-phase.md]: experimental-phase.md
-
-### 7. Experimental
-
-Once prototyped and accepted, someone (perhaps the
-authors of the proposal) will be tasked with
-implementing the feature in the target repository
-and shipping it as experimental. Code moves from
-the experimental repo to the real repo behind an
-experimental flag. Experimental features are
-functional but may change based on user feedback,
-and nothing about them is guaranteed.
-
-PRs against the target repo are reviewed as either
-standard or experimental. Experimental PRs carry
-the `experimental` label, get lighter scrutiny, and
-must keep all new code behind the `experimental`
-build tag. See [pr-review.md] for how PRs are
-reviewed in the implementation repos.
-
 [pr-review.md]: pr-review.md
-
-> **Note**: Updates to experimental features may
-> make breaking, backwards-incompatible changes. An
-> experimental feature may be removed at any time.
-
-### 8. Standard (Release)
-
-After a soak period determined by maintainers, a
-maintainer may promote the feature from experimental
-to standard/released. The proposal status is updated
-to `released`. At the code level, promotion means
-removing the `experimental` build tag so the feature
-builds by default, which requires a full review of
-the entire feature. See [pr-review.md].
 
 ## Affected Repositories
 

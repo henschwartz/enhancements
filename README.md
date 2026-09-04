@@ -8,41 +8,31 @@ repositories.
 ## How New Features Happen
 
 ```
-Discussion -> Proposal -> Experimental -> Standard
+Issue -> Triage -> Accepted -> Work it
 ```
 
-1. **Discussion first.** Open a [GitHub Discussion]
-   (category: "Idea") describing what you want and
-   why. Collect feedback, build consensus, get
-   maintainer sign-off. Nothing moves forward
-   without this step.
+1. **Open an issue.** Describe what you want and
+   why. It starts life labeled
+   `triage/needs-triage`.
 
-2. **Proposal.** Once a maintainer approves the
-   direction, file a proposal here (What + Why
-   only). Iterate on the How section after the
-   direction is accepted.
+2. **Maintainers triage it.** They mark it either
+   `triage/accepted` or `triage/declined`. If a
+   change is large enough to need a written
+   proposal first, maintainers will say so
+   clearly (`triage/needs-proposal`).
 
-3. **Experimental.** Prototype in the [experimental
-   repo], then ship behind an experimental flag in
-   the target repo. Experimental features may
-   change or be removed at any time.
+3. **Build it.** Once accepted, it's fair game to
+   work on according to its project status and
+   milestone.
 
-4. **Standard.** After a soak period, maintainers
-   promote the feature to standard/released.
+Most changes need nothing more than this. See
+[docs/process.md](docs/process.md) for triage
+outcomes, when a proposal is required, and the
+optional experimental phase.
 
-> **Nothing before standard is guaranteed.**
-> A discussion does not guarantee a proposal will
-> be accepted. An accepted proposal does not
-> guarantee an experimental implementation. An
-> experimental feature does not guarantee promotion
-> to standard. Features can be changed, reworked,
-> or removed at any stage before reaching standard.
-
-See [docs/process.md](docs/process.md) for the full
-lifecycle.
-
-[GitHub Discussion]: https://github.com/orgs/praxis-proxy/discussions
-[experimental repo]: https://github.com/praxis-proxy/experimental
+> **Nothing here is guaranteed.** Acceptance does
+> not guarantee a feature ships, and a feature can
+> be changed, reworked, or removed at any stage.
 
 ## Structure
 

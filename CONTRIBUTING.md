@@ -1,78 +1,63 @@
-# Contributing Proposals
+# Contributing Enhancements
 
 Thank you for your interest in improving Praxis.
-
-## Before You Start
-
-Enhancement proposals are for features that span
-multiple PRs, introduce new architectural patterns,
-affect a project's public interface, or are complex
-enough to warrant more process.
-
-Small changes (bug fixes, minor enhancements,
-documentation updates) do not require proposals.
 
 ## How New Features Happen
 
 ```
-Discussion -> Proposal -> Experimental -> Standard
+Issue -> Triage -> Accepted -> Work it
 ```
 
-**Start with a Discussion.** This is the only way
-to get a new feature started. Open a [GitHub
-Discussion] (category: "Idea") describing your idea.
-Focus on *what* and *why*. Build consensus.
+**Open an issue.** This is the entry point. Describe
+what you want and why. Your issue starts labeled
+`triage/needs-triage`.
 
-> **Nothing before standard is guaranteed.** A
-> discussion does not mean a proposal will be
-> accepted. An accepted proposal does not mean it
-> will ship. An experimental feature does not mean
-> it will reach standard. Features can be changed,
-> reworked, or removed at any stage.
+**Maintainers triage it.** They mark it either
+`triage/accepted` or `triage/declined`. If the
+change is big enough to need a written proposal
+first, they'll say so clearly with
+`triage/needs-proposal`.
 
-[GitHub Discussion]: https://github.com/orgs/praxis-proxy/discussions
+**Build it.** Once accepted, it's fair game to work
+on according to its project status and milestone.
 
-## Step by Step
+> **Nothing here is guaranteed.** Acceptance does
+> not guarantee a feature ships, and a feature can
+> be changed, reworked, or removed at any stage.
 
-1. **Open a Discussion** at the [org-level
-   discussions] (category: "Idea"). Focus on *what*
-   and *why*, not implementation details. Build
-   consensus.
+Small changes (bug fixes, minor enhancements,
+documentation updates) don't need any of this. Just
+open a PR.
 
-2. **Get sign-off.** A maintainer reviews the
-   discussion and marks it approved.
+## When a Proposal Is Required
 
-3. **Create an EPIC issue.** Open an issue in this
-   repo from the approved discussion. Include a
-   link to the discussion and a high-level summary.
+Most issues don't need a proposal. Maintainers ask
+for one (by adding `triage/needs-proposal`) when a
+change spans multiple PRs, introduces a new
+architectural pattern, affects a project's public
+interface, or is complex enough to warrant a
+written design.
 
-4. **Submit a proposal PR.** Create a file in
-   `proposals/` using the [template]. The filename
-   must follow the convention:
+When asked, create a file in `proposals/` using the
+[template]. The filename must follow the convention:
 
-   ```
-   <5-digit-issue-number>_<kebab-case-slug>.md
-   ```
+```
+<5-digit-issue-number>_<kebab-case-slug>.md
+```
 
-   The first PR must contain only the **What?** and
-   **Why?** sections. Do not include **How?** yet.
+Start with **What?** and **Why?**; add **How?** in a
+follow-up PR once the direction is accepted. Iterate
+until a maintainer marks the proposal `accepted`.
 
-5. **Iterate.** Add the **How?** section in follow-up
-   PRs once the direction is accepted.
+At their discretion, maintainers may also ask that a
+feature be prototyped in the [experimental repo]
+first. See [experimental-phase.md] for details.
 
-6. **Prototype.** Implement a working prototype in
-   the [experimental repo] before the proposal can
-   advance to experimental status. See
-   [experimental-phase.md] for details and
-   exemptions.
+## Proposal Requirements
 
-## Requirements
+When a proposal is required, it must include:
 
-All proposals must include:
-
-- A `discussion` link (PRs without one are
-  auto-closed)
-- An `issue` link to the EPIC issue
+- An `issue` link to the originating issue
 - At least one author
 - At least one stakeholder
 - A `repos` list of affected repositories
@@ -88,7 +73,6 @@ Valid `repos` values:
 `conventions`, `experimental`, `grid`, `forge`,
 `policy`, `demos`, `pingora`
 
-[org-level discussions]: https://github.com/orgs/praxis-proxy/discussions
 [template]: proposals/template.md
 [experimental repo]: https://github.com/praxis-proxy/experimental
 [experimental-phase.md]: docs/experimental-phase.md

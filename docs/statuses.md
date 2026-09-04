@@ -1,10 +1,17 @@
 # Proposal Statuses
 
+These statuses apply to proposal files in
+`proposals/`, which exist only when maintainers
+request a written proposal (`triage/needs-proposal`).
+Issues that don't need a proposal are tracked with
+their triage labels and project status instead. See
+[process.md](process.md).
+
 ## Status Values
 
 | Status | Meaning |
 |--------|---------|
-| `proposed` | Under discussion, not yet accepted |
+| `proposed` | Filed, not yet accepted |
 | `blocked` | Cannot proceed; requires prerequisite work |
 | `deferred` | Intentionally postponed; not actively pursued |
 | `accepted` | Approved for implementation |

@@ -1,9 +1,10 @@
 # Experimental Phase Guide
 
-The [experimental repo] is a required phase in the
-proposal lifecycle. Most new filters and features
-must be prototyped there before advancing to
-`experimental` status in their target repository.
+The [experimental repo] is where features can be
+prototyped before they land as standard. It is not
+required by default: maintainers decide, case by
+case, when a change should go through it first. When
+they do, this guide describes how it works.
 
 [experimental repo]: https://github.com/praxis-proxy/experimental
 
@@ -22,27 +23,26 @@ Prototyping in a separate repo provides:
 - **Informed design.** The How? section is stronger
   when informed by a working prototype.
 
-## Default Path
+## Prototype Path
 
-For proposals adding filters, features, or new
-capabilities:
+When maintainers ask for a prototype (typically for
+new filters, features, or capabilities):
 
 1. Implement a working prototype in the
    experimental repo.
 2. The prototype must demonstrate the core
-   functionality described in the proposal's
-   What? section. It does not need to be
-   production-ready.
-3. Update the proposal's `experimental_impl`
-   frontmatter field with a link to the
-   implementation (PR or branch URL).
-4. Once the prototype exists and the proposal is
-   accepted, code moves to the target repository
-   behind an experimental flag. In the target repo,
-   that work lands through `experimental`-labeled
-   PRs behind the `experimental` build tag. See
-   [pr-review.md] for how those PRs are reviewed and
-   how the build tag is later removed.
+   functionality described in the What? section.
+   It does not need to be production-ready.
+3. If a proposal exists, update its
+   `experimental_impl` frontmatter field with a link
+   to the implementation (PR or branch URL).
+4. Once the prototype exists, code moves to the
+   target repository behind an experimental flag. In
+   the target repo, that work lands through
+   `experimental`-labeled PRs behind the
+   `experimental` build tag. See [pr-review.md] for
+   how those PRs are reviewed and how the build tag
+   is later removed.
 
 [pr-review.md]: pr-review.md
 
@@ -57,10 +57,12 @@ capabilities:
 
 ## Exempt Path
 
-Some proposals structurally cannot use the
-experimental repo. These must set
-`experimental_exempt: true` and provide a reason
-in `experimental_exempt_reason`.
+Some changes structurally cannot use the
+experimental repo. When a proposal exists for one of
+these and a prototype is expected, set
+`experimental_exempt: true` and provide a reason in
+`experimental_exempt_reason`, then use one of the
+alternatives below instead.
 
 ### Valid Exemption Categories
 

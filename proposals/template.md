@@ -1,6 +1,5 @@
 ---
-discussion: # REQUIRED - link to org-level GitHub Discussion
-issue: # link to the EPIC issue in this repo
+issue: # REQUIRED - link to the originating issue in this repo
 status: proposed
 repos:
   - # affected repos (e.g. praxis, operator)
